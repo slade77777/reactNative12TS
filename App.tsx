@@ -1,74 +1,92 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
   View,
+  Text,
+  ScrollView,
+  RefreshControl,
+  FlatList,
+  SectionList,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import Product from './src/components/Product';
-import ListProduct from './src/components/ListProduct';
 
-const data = [
+const Contacts: {
+  title: string;
+  data: {
+      name: string;
+      phoneNumber: string;
+  }[];
+}[] = 
+[
   {
-    name: 'tai nghe',
-    content: '172k san pham',
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
+    title:"A",
+    data: [
+      {name:"Aanh rina Haro", phoneNumber:"(+84) 2125 1256"}
+    ]
   },
   {
-    name: 'quan ao',
-    content: '50k san pham',
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
+    title:"B",
+    data: [
+      {name:"Ban shina", phoneNumber:"(+84)97 5892 666"},
+      {name:"Binh Nguyen", phoneNumber:"(+84)98 966 8759"},
+      {name:"Ban Do", phoneNumber:"(+84) 95458 653214"},
+    ]
   },
   {
-    name: 'may tinh',
-    content: '20k san pham',
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
+    title:"C",
+    data: [
+      {name:"Cong Pham", phoneNumber:"(+84) 987 568 6895"},
+      {name:"Chinh Ngo", phoneNumber:"(+84) 975 8889 523"},
+      {name:"Cam Nguyen", phoneNumber:"(+84) 895 6332 513"},
+    ]
   },
   {
-    name: '123',
-    content: '500k san pham',
-    imageUrl:
-      'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
+    title:"D",
+    data: [
+      {name:"Dong Pham", phoneNumber:"(+84) 987 568 6895"},
+      {name:"Dinh Ngo", phoneNumber:"(+84) 975 8889 523"},
+
+    ]
   },
-];
+]; 
+
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <ListProduct data={data} />
-    </SafeAreaView>
+    <SectionList style={{backgroundColor:'#F0F0F0'}}
+      sections={Contacts}
+      keyExtractor={(item, index) => item.name}
+      renderItem={({ item }) => (
+          <View style={{justifyContent: 'center',backgroundColor:'#FFFFFF', borderRadius: 15, marginLeft: 10, marginRight: 10}}>
+            <Text style={styles.text}>{item.name +" : " + item.phoneNumber}</Text>
+          </View>
+          
+      )}
+      renderSectionHeader={({section})=>(
+        <View style={styles.item}>
+          <Text style={styles.text}>{section.title}</Text>
+        </View>
+      )}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  
+  item: {
+    margin: 10,
+    justifyContent: 'center',
+    borderRadius: 10
+  },
+  text: {
+    color: '#000000',
+    fontSize: 16,
+    margin: 10,
+    borderBottomColor: '#E1E1E1',
+    borderBottomWidth: 1,
+    
+    
+  },
+});
 
 export default App;
