@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { Props } from 'react'
 import { StyleSheet, Text, View,Pressable } from 'react-native'
 
-interface Props {
+type ContactType ={
     contact:{
         name: string,
         numberPhone: string,
-    };
+    }
 }
 
-const Contact = (props: Props) => {
-
+const Contact = (props: ContactType) => {
+    
     const { contact } = props
+    console.log(contact)
 
     return (
         <View style={{display:'flex',flexDirection: 'row',paddingLeft:10,justifyContent:'space-between',flex:3,height:40,alignItems:'center'}}>

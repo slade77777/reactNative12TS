@@ -1,8 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View,SafeAreaView, SectionList } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import Header from './src/components/Header'
-import Title from './src/components/Title'
-import Contact from './src/components/Contact'
+import ListContact from './src/components/ListContact'
 
 interface Props {
   
@@ -10,7 +9,7 @@ interface Props {
 
 const App = (props: Props) => {
 
-  const ListContact = [
+  const ContactBook = [
     {
       title:'A', 
       data:[
@@ -82,13 +81,9 @@ const App = (props: Props) => {
 
   return (
     <SafeAreaView style={{paddingBottom:145}}>
-    <Header />
-      <SectionList sections={ListContact}
-        renderItem={({item,index}) => <Contact key={index} contact={item} />}
-        renderSectionHeader={({section : {title}}) => <Title title={title} />}
-        keyExtractor={(item,index) => index.toString()}
-      />
-  </SafeAreaView>
+      <Header />
+      <ListContact ContactBook={ContactBook} />
+    </SafeAreaView>
   )
 }
 
