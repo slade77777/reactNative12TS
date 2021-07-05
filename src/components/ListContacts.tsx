@@ -1,30 +1,30 @@
-import React, {FC} from 'react';
-import {SectionList, View, SafeAreaView, Text} from 'react-native';
-import Contacts, {ContactType} from './Contacts';
+//tsrnfs cú pháp tắt tạo template component có style, funtional component
 
-type ListContactsType = {
-  data: Array<ContactType>;
-};
+import React from 'react'
+import { StyleSheet, Text, View,SectionList } from 'react-native'
+import Contact from './Contact'
+import Title from './Title'
 
-const ListContacts: FC<ListContactsType> = ({data}) => {
+//a cho e tai extension cho. ok e
+
+interface Props {
+  ContactBook: Array<{title:string,data:Array<{name:string,phoneNumber:string}>}> //nen e viet thu cong nhu nay. ok e
+}
+
+const ListContacts = (props: Props) => {
+
+  const { ContactBook } = props
+
   return (
-    <SafeAreaView>
-      <SectionList style={{backgroundColor:'#F0F0F0'}}
-      sections={data}
+    <SectionList style={{backgroundColor:'#F0F0F0'}}
+      sections={ContactBook}
       keyExtractor={(item, index) => item.name}
-      renderItem={({ item }) => (
-        <View>
-          <Text>{item.name +" : " + item.phoneNumber}</Text>
-        </View>
-      )}
-      renderSectionHeader={({section})=>(
-        <View>
-          <Text>{section.title}</Text>
-        </View>
-      )}
+      renderItem={({ item }) => <Contact Contact={item} />}
+      renderSectionHeader={({section:{title}})=> <Title title={title}/> }
     />
-    </SafeAreaView>
-  );
-};
+  )
+}
 
-export default ListContacts;
+export default ListContacts
+
+const styles = StyleSheet.create({})
