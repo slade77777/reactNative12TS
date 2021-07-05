@@ -7,19 +7,20 @@ export type ProductType = {
   imageUrl: string;
 };
 
-const Product: React.FC<ProductType> = ({name, content, imageUrl}) => {
+const Product: React.FC<ProductType> = props => {
+  console.log(props);
   return (
     <View style={styles.product}>
-      <View>
-        <Text>{name}</Text>
-        <Text>{content}</Text>
-      </View>
-      <Image
-        source={{
-          uri: imageUrl,
-        }}
-        style={{width: 50, height: 50}}
-      />
+      {/*<View>*/}
+      {/*  <Text>{name}</Text>*/}
+      {/*  <Text>{content}</Text>*/}
+      {/*</View>*/}
+      {/*<Image*/}
+      {/*  source={{*/}
+      {/*    uri: imageUrl,*/}
+      {/*  }}*/}
+      {/*  style={{width: 50, height: 50}}*/}
+      {/*/>*/}
     </View>
   );
 };
