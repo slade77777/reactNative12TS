@@ -70,7 +70,7 @@ const App = () => {
         )}
         renderSectionHeader={({section}) => (
           <View style={styles.item}>
-            <Text style={styles.text}>{section.title}</Text>
+            <Text style={styles.header}>{section.title}</Text>
           </View>
         )}
       />
@@ -103,6 +103,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: StatusBar.currentHeight,
     backgroundColor: '#11AC93',
+  },
+  header: {
+    margin: 5,
+    borderBottomColor: '#E1E1E1',
+    borderBottomWidth: 1,
+    fontSize: 25,
+    color: 'white',
   },
 });
 
