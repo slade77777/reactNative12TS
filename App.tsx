@@ -8,8 +8,10 @@ import {
   TextInput,
   StatusBar,
 } from 'react-native';
+import Contact from './src/components/Contact';
+import ListContacts from './src/components/ListContact';
 
-const Contacts: {
+const contacts: {
   title: string;
   data: {
     name: string;
@@ -52,29 +54,7 @@ const Contacts: {
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <TextInput style={styles.search} placeholder=" Tim kiem" />
-      <SectionList
-        sections={Contacts}
-        keyExtractor={item => item.name}
-        renderItem={({item}) => (
-          <View
-            style={{
-              padding: 15,
-              marginVertical: 8,
-            }}>
-            <Text style={styles.text}>
-              {item.name + ' : ' + item.phoneNumber}
-            </Text>
-          </View>
-        )}
-        renderSectionHeader={({section}) => (
-          <View style={styles.item}>
-            <Text style={styles.header}>{section.title}</Text>
-          </View>
-        )}
-      />
-    </SafeAreaView>
+    <ListContacts data={contacts}/>
   );
 };
 
