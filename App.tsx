@@ -1,13 +1,4 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  SectionList,
-  SafeAreaView,
-  TextInput,
-  StatusBar,
-} from 'react-native';
 import Contact from './src/components/Contact';
 import ListContacts from './src/components/ListContact';
 
@@ -53,44 +44,7 @@ const contacts: {
 ];
 
 const App = () => {
-  return (
-    <ListContacts data={contacts}/>
-  );
+  return <ListContacts data={contacts}/>;
 };
-
-const styles = StyleSheet.create({
-  item: {
-    margin: 10,
-    justifyContent: 'center',
-    borderRadius: 10,
-  },
-  text: {
-    margin: 10,
-    borderBottomColor: '#E1E1E1',
-    borderBottomWidth: 1,
-    fontSize: 18,
-    color: 'white',
-  },
-  search: {
-    backgroundColor: 'white',
-    marginHorizontal: 10,
-    marginVertical: 8,
-    borderWidth: 1,
-    borderRadius: 12,
-    borderColor: '#11AC93',
-  },
-  container: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    backgroundColor: '#11AC93',
-  },
-  header: {
-    margin: 5,
-    borderBottomColor: '#E1E1E1',
-    borderBottomWidth: 1,
-    fontSize: 25,
-    color: 'white',
-  },
-});
 
 export default App;
