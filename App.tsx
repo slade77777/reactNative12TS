@@ -1,113 +1,48 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import React from 'react';
+import { SafeAreaView, StyleSheet, TextInput, Text } from 'react-native';
 
-import React, {useState} from 'react';
-import {
-  Alert,
-  Button,
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const UselessTextInput = () => {
+  const [Edge1, setEdge1] = React.useState("Edge1");
+  const [Edge2, setEdge2] = React.useState("Edge2");
+  const [Edge3, setEdge3] = React.useState("Edge3");
+  
+  console.log(Edge3)
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import Product from './src/components/Product';
-import ListProduct from './src/components/ListProduct';
-import ColorView from './src/components/ColorView';
-
-// const data = [
-//   {
-//     name: 'tai nghe',
-//     content: '172k san pham',
-//     imageUrl:
-//       'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
-//   },
-//   {
-//     name: 'quan ao',
-//     content: '50k san pham',
-//     imageUrl:
-//       'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
-//   },
-//   {
-//     name: 'may tinh',
-//     content: '20k san pham',
-//     imageUrl:
-//       'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
-//   },
-//   {
-//     name: '123',
-//     content: '500k san pham',
-//     imageUrl:
-//       'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg',
-//   },
-// ];
-
-const colorList = [
-  {
-    backgroundColor: 'red',
-    text: 'red',
-  },
-  {
-    backgroundColor: 'green',
-    text: 'green',
-  },
-  {
-    backgroundColor: 'blue',
-    text: 'blue',
-  },
-  {
-    backgroundColor: 'yellow',
-    text: 'yellow',
-  },
-  {
-    backgroundColor: 'black',
-    text: 'black',
-  },
-  {
-    backgroundColor: 'pink',
-    text: 'pink',
-  },
-];
-
-const App = () => {
-  const [backgroundStyle, setBackgroundColor] = useState('white');
-
-  function changeColorBackground(backgroundColor: string) {
-    setBackgroundColor(backgroundColor);
+  function calculatePerimeter (Edge1:number, Edge2:number, Edge3:number) {
+    return ({Edge1} + {Edge2} + {Edge3})
   }
 
   return (
-    <SafeAreaView style={{backgroundColor: backgroundStyle, flex: 1}}>
-      <FlatList
-        data={colorList}
-        renderItem={({item}) => (
-          <ColorView
-            changeColorBackground={changeColorBackground}
-            backgroundColor={item.backgroundColor}
-            text={item.text}
-          />
-        )}
+    <SafeAreaView>
+      <TextInput
+        style={styles.input}
+        onChangeText={setEdge1}
+        value={Edge1}
       />
+      <TextInput
+        style={styles.input}
+        onChangeText={setEdge2}
+        value={Edge2}
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setEdge3}
+        value={Edge3}
+      />
+      <Text>
+        Chu vi: {+Edge1 + +Edge2 + +Edge3}
+        </Text>
     </SafeAreaView>
   );
 };
 
-export default App;
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+  },
+});
+
+export default UselessTextInput;
