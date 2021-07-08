@@ -1,50 +1,59 @@
-import React from 'react';
-import Contact from './src/components/Contact';
-import ListContacts from './src/components/ListContact';
-
-const contacts: {
-  title: string;
-  data: {
-    name: string;
-    phoneNumber: string;
-  }[];
-}[] = [
-  {
-    title: 'A',
-    data: [
-      {name: 'Anh Binh', phoneNumber: '0982887446'},
-      {name: 'Anh chu nha', phoneNumber: '0982887447'},
-      {name: 'Anh Gia', phoneNumber: '0982887448'},
-    ],
-  },
-  {
-    title: 'B',
-    data: [
-      {name: 'Ba Ngoai', phoneNumber: '0982887449'},
-      {name: 'Bac Dinh', phoneNumber: '0982887440'},
-      {name: 'Bac Hoan', phoneNumber: '0982887441'},
-    ],
-  },
-  {
-    title: 'C',
-    data: [
-      {name: 'Cau Phuong', phoneNumber: '0982887442'},
-      {name: 'Co Kieu Anh', phoneNumber: '0982887443'},
-      {name: 'Co Thi', phoneNumber: '0982887444'},
-    ],
-  },
-  {
-    title: 'D',
-    data: [
-      {name: 'Dau', phoneNumber: '0982887445'},
-      {name: 'Duy Hieu', phoneNumber: '0982887446'},
-      {name: 'Duong Ch', phoneNumber: '0982887447'},
-    ],
-  },
-];
+import React, {useState} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  Button,
+} from 'react-native';
 
 const App = () => {
-  return <ListContacts data={contacts}/>;
+  const [edge1, setEdge1] = useState('');
+  const [edge2, setEdge2] = useState('');
+  const [edge3, setEdge3] = useState('');
+  const [perimeter, setPerimeter] = useState(0);
+
+  function calculate() {
+    const total = +edge1 + +edge2 + +edge3;
+    setPerimeter(total);
+  }
+
+  return (
+    <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+      <View style={{margin: 12}}>
+        <Text>Canh 1</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          onChangeText={setEdge1}
+        />
+        <Text>Canh 2</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          onChangeText={setEdge2}
+        />
+        <Text>Canh 3</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType="numeric"
+          onChangeText={setEdge3}
+        />
+        <Button title={'Tính'} onPress={calculate} />
+        <Text style={{textAlign: 'center', fontSize: 20}}>
+          Chu vi tam giac la: {perimeter}
+        </Text>
+      </View>
+    </SafeAreaView>
+  );
 };
 
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+  },
+});
 export default App;
