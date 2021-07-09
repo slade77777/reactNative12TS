@@ -8,43 +8,23 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {
-  Alert,
-  Button,
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import CustomTextInput from './src/components/CustomTextInput';
+import React, {useState, useEffect} from 'react';
+import {Alert, Button, SafeAreaView, StyleSheet, Text} from 'react-native';
+import Clock from './src/components/Clock';
 
 const App = () => {
-  const [edge1, setEdge1] = useState('');
-  const [edge2, setEdge2] = useState('');
-  const [edge3, setEdge3] = useState('');
-  const [perimeter, setPerimeter] = useState(0);
-
-  function calculate() {
-    const total = +edge1 + +edge2 + +edge3;
-    setPerimeter(total);
-  }
+  const [showClock, setShowClock] = useState(true);
 
   return (
-    <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
-      <CustomTextInput onChangeEdge={setEdge1} />
-      <CustomTextInput onChangeEdge={setEdge2} />
-      <CustomTextInput onChangeEdge={setEdge3} />
-      <Button title={'Tính'} onPress={calculate} />
-      <Text style={{textAlign: 'center', fontSize: 20}}>
-        Chu vi: {perimeter}
-      </Text>
+    <SafeAreaView
+      style={{
+        backgroundColor: 'white',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <Button title={'Ẩn / hiện'} onPress={() => setShowClock(!showClock)} />
+      {showClock && <Clock />}
     </SafeAreaView>
   );
 };
