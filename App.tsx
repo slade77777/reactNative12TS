@@ -69,7 +69,7 @@ const App = () => {
   const [filterData, setFilterData] = useState(productData);
 
   function searchProduct(textToSearch: string){console.log(textToSearch);
-    setFilterData(productData.filter(product => product.title.includes(textToSearch)))
+    setFilterData(productData.filter(product => product.title.toLowerCase().includes(textToSearch.toLowerCase())))
   }
 
   const renderItem = ({item}: {item: CustomItem}) => <Item item={item} />;
