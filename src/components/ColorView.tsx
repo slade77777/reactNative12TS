@@ -3,11 +3,11 @@ import {View, Text, TouchableOpacity, Alert} from 'react-native';
 
 type Prop = {
   backgroundColor: string;
-  text?: string;
-  changeColorBackground: (color: string) => void;
+  changeColorBackground: (val: string) => void;
 };
 
 const ColorView: FC<Prop> = props => {
+  console.log(props.backgroundColor);
   return (
     <TouchableOpacity
       onPress={() => props.changeColorBackground(props.backgroundColor)}
@@ -22,4 +22,4 @@ const ColorView: FC<Prop> = props => {
   );
 };
 
-export default ColorView;
+export default React.memo(ColorView);
