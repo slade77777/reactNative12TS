@@ -1,12 +1,11 @@
 import React, {FC, useContext, useState} from 'react';
 import {Button, StyleSheet, TextInput, View} from 'react-native';
-import {UserContext} from '../../App';
+import {login} from '../redux/action/userAction';
+import {connect} from 'react-redux';
 
-const Login: FC = () => {
+const Login: FC<{loginUser: Function}> = ({loginUser}) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-
-  const userContext = useContext(UserContext);
 
   return (
     <View>
@@ -20,15 +19,7 @@ const Login: FC = () => {
         onChangeText={setEmail}
         placeholder={'Email'}
       />
-      <Button
-        title={'Đăng nhập'}
-        onPress={() =>
-          userContext.login({
-            name,
-            email,
-          })
-        }
-      />
+      <Button title={'Đăng nhập'} onPress={() => loginUser(name, email)} />
     </View>
   );
 };
@@ -41,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default connect(null, {loginUser: login})(Login);
