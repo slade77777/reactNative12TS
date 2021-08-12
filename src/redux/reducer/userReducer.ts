@@ -1,8 +1,9 @@
-import {LOGIN} from '../actionTypes';
+import {LOGIN, LOGIN_FAIL} from '../actionTypes';
 
 const initialValues = {
   name: '',
   email: '',
+  loginMessage: '',
 };
 
 export default function userReducer(state = initialValues, action: any) {
@@ -11,7 +12,10 @@ export default function userReducer(state = initialValues, action: any) {
       return {
         name: action.payload.name,
         email: action.payload.email,
+        loginMessage: '',
       };
+    case LOGIN_FAIL:
+      return {...initialValues, loginMessage: 'sai thong tin'};
     default:
       return state;
   }

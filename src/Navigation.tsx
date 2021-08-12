@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import Survey1 from './screens/Survey/Survey1';
 import Survey2 from './screens/Survey/Survey2';
 import Survey3 from './screens/Survey/Survey3';
@@ -7,9 +7,34 @@ import Login from './screens/Login';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 const Stack = createStackNavigator();
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {LOGIN} from './redux/actionTypes';
 
-const Navigation: FC<{user: {name: string; email: string}}> = ({user}) => {
+const Navigation: FC = () => {
+  useEffect(() => {
+    getUserCache();
+  }, []);
+  const dispatch = useDispatch();
+
+  const getUserCache = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@user_data');
+      if (value) {
+        const userData = JSON.parse(value);
+        dispatch({
+          type: LOGIN,
+          payload: {
+            name: userData.username,
+            email: userData.email,
+          },
+        });
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+  const user = useSelector(store => store?.userReducer);
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -28,6 +53,4 @@ const Navigation: FC<{user: {name: string; email: string}}> = ({user}) => {
   );
 };
 
-export default connect(store => {
-  return {user: store?.userReducer};
-})(Navigation);
+export default Navigation;

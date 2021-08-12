@@ -1,6 +1,7 @@
-import {combineReducers} from 'redux';
 import userReducer from './reducer/userReducer';
-import {createStore} from 'redux';
 import surveyReducer from './reducer/surveyReducer';
+import {configureStore} from '@reduxjs/toolkit';
 
-export default createStore(combineReducers({userReducer, surveyReducer}));
+export default configureStore({
+  reducer: {userReducer, surveyReducer},
+});
