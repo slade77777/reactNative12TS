@@ -14,18 +14,23 @@ import store from './src/redux/store';
 import {Provider} from 'react-redux';
 
 import Navigation from './src/Navigation';
+import {QueryClient, QueryClientProvider} from 'react-query';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <SafeAreaView
-        style={{
-          backgroundColor: 'white',
-          flex: 1,
-        }}>
-        <Navigation />
-      </SafeAreaView>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <SafeAreaView
+          style={{
+            backgroundColor: 'white',
+            flex: 1,
+          }}>
+          <Navigation />
+        </SafeAreaView>
+      </Provider>
+    </QueryClientProvider>
   );
 };
 
