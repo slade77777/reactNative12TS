@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LOGIN} from './redux/actionTypes';
 import UserScreen from './screens/UserScreen';
+import AddUserScreen from './screens/AddUserScreen';
 
 const Navigation: FC = () => {
   useEffect(() => {
@@ -42,6 +43,7 @@ const Navigation: FC = () => {
         {user.name ? (
           <>
             <Stack.Screen name="User" component={UserScreen} />
+            <Stack.Screen name="AddUser" component={AddUserScreen} />
             <Stack.Screen name="Survey1" component={Survey1} />
             <Stack.Screen name="Survey2" component={Survey2} />
             <Stack.Screen name="Survey3" component={Survey3} />
